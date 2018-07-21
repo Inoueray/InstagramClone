@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_check, only: [:new, :edit, :show, :destroy]
 
   # GET /pictures
   # GET /pictures.json
@@ -10,11 +11,16 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
   # GET /pictures/new
   def new
+    if params[:back]
+      @picture.new(picture_params)
+    else
     @picture = Picture.new
+    end
   end
 
   # GET /pictures/1/edit
@@ -36,6 +42,11 @@ class PicturesController < ApplicationController
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def confirm
+    @picture = Picture.new(picture_params)
+    render :new if @picture.invalid?
   end
 
   # PATCH/PUT /pictures/1
@@ -70,6 +81,12 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:content, :image, :image_cache, :user_id)
+      params.require(:picture).permit(:content, :image, :image_cache)
+    end
+
+    def logged_in_check
+      unless logged_in? then
+        redirect_to new_session_path
+      end
     end
 end
