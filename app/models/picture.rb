@@ -1,6 +1,8 @@
 class Picture < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   validates :image, presence: true
+  
+  default_scope -> { order(created_at: :desc) }
 
   mount_uploader :image, ImageUploader
 

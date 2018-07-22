@@ -1,3 +1,61 @@
 // Place all the styles related to the pictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post {
+  border: solid 1px #e6e6e6; 
+  border-radius: 3px;
+  background-color: #fff;
+  width: 640px;
+  padding: 0;
+  margin-bottom: 50px;
+  margin-right: auto;    
+  margin-left: auto;
+}
+
+.post-user {
+  height: 60px;
+  line-height: 60px;
+}
+
+.post-user-name {
+  margin-left: 10px;
+}
+
+.post-picture {
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+.post-picture img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.post-action {
+  margin-top: 4px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.post-action a {
+  margin: 0 10px;
+}
+
+.post-text {
+  min-height: 40px;
+  padding: 10px;
+}
+
+.editing-form, .new-form {
+  text-align: center;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.editing-form input {
+  text-align: center;
+  margin: 0 auto;
+}

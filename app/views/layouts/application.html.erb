@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Insta</title>
+    <title>いんすたくろーん</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,18 +9,31 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-
-     <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %>   
-
-    <%= yield %>
+    <div class="header">
+      <div class="container">
+        <ul class="row">
+        <% if logged_in? %>
+          <li class="col-md-3"><%= link_to "Home", "/" %></li>
+          <li class="col-md-3"><%= link_to "Post", new_picture_path %></li>
+          <li class="col-md-3"><%= link_to "Profile", user_path(current_user.id) %></li>
+          <li class="col-md-3"><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+        <% else %>
+          <li class="col-md-4"><%= link_to "Home", "/" %></li>        
+          <li class="col-md-4"> <%= link_to "Sign up", new_user_path %></li>
+          <li class="col-md-4"><%= link_to "Login", new_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-notice">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+      </div>
+      <div class="main-content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

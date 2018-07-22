@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions, only:[:new, :create, :destroy]
 
-  get "/" , to: "home#top"
+  get "/" , to: "pictures#index"
 
   resources :users, only: [:new, :create, :edit, :show, :update, :destroy]
   resources :pictures do

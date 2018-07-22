@@ -1,22 +1,32 @@
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p><%= link_to 'Edit', edit_user_path(@user) %></p>
-
-<h3>Favorites</h3>
-<% @favorite_pictures.each do |favorite_picture| %>
-  <div>
-    <p><%= favorite_picture.content %></p>
-    <p><%= image_tag favorite_picture.image %></p>
-    <p><%= favorite_picture.user.name %></p>
-    <p><%= link_to 'Show', picture_path(favorite_picture.id) %></p>
+<div class="profile-main">
+  <div class="profile-user-name">
+    <%= @user.name %>
   </div>
-<% end %>
-
+  <div class="profile-user-email">
+    <%= @user.email %>
+  </div>
+  <div class="profile-edit-button">
+    <%= link_to 'Edit', edit_user_path(@user) %>
+  </div>
+</div> 
+<div class="profile-favorites">
+  <h3>Favorites</h3>
+    <% @favorite_pictures.each do |favorite_picture| %>
+    <div class="post">
+      <div class="post-user">
+        <span class="post-user-image">
+          
+        </span>
+        <span class="post-user-name">
+          <a><%= favorite_picture.user.name %></a>
+        </span>
+      </div>
+      <div class="post-picture">
+        <%= image_tag favorite_picture.image %>
+      </div>
+      <div class="post-text">
+        <a><%= favorite_picture.content %></a>
+      </div>
+    </div>
+    <% end %>
+</div>
