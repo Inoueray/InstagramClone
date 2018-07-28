@@ -1,18 +1,22 @@
-<h3>以下の内容で、Postする。</h3>
+<div class="post-confirm">
+  <h3>以下の内容で、Postする。</h3>
+  <div class="post-confirm-confirm">
+    <%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
+      <%= form.hidden_field :content %>
+      <%= form.hidden_field :image %>
+      <%= form.hidden_field :image_cache %>
 
-<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
-  <%= form.hidden_field :content %>
-  <%= form.hidden_field :image %>
-  <%= form.hidden_field :image_cache %>
-
-  <p>content:<%= @picture.content %></p>
-  <p>image:<%= image_tag @picture.image %></p>
-  <%= form.submit  "Post!" %>
-<% end %>
-
-<%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
-  <%= form.hidden_field :content %>
-  <%= form.hidden_field :image %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.submit "もどる", name: 'back' %>
-<% end %>
+      <p>content:<%= @picture.content %></p>
+      <p>image:<%= image_tag @picture.image %></p>
+      <%= form.submit("post", :class => "btn btn-default") %>
+    <% end %>
+  </div>
+  <div class="post-confirm-back">
+    <%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
+      <%= form.hidden_field :content %>
+      <%= form.hidden_field :image %>
+      <%= form.hidden_field :image_cache %>
+      <%= form.submit("back", name: 'back', :class => "btn btn-default") %>
+    <% end %>
+  </div>
+</div>

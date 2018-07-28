@@ -17,9 +17,9 @@ class PicturesController < ApplicationController
   # GET /pictures/new
   def new
     if params[:back]
-      @picture.new(picture_params)
+      @picture = Picture.new(picture_params)
     else
-    @picture = Picture.new
+      @picture = Picture.new
     end
   end
 
